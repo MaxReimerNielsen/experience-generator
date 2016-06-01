@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import Slider from 'material-ui/Slider';
+import TextField from 'sitecore-ui/TextField';
+import RaisedButton from 'sitecore-ui/RaisedButton';
+import Slider from 'sitecore-ui/Slider';
 
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardText} from 'sitecore-ui/Card';
 
 class AddExternalSearchTermComponent extends Component {
     constructor(props){

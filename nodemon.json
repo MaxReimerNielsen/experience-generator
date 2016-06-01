@@ -1,5 +1,10 @@
 {
   "watch": [
-    "json-mock-server.js"
+    "json-mock-server.js",
+    "nodemon.json",
+    "server.js",
+    "webpack-dev-server.config.js",
+    "webpack-production.config.js",
+    "webpack-server.js"
   ]
 }

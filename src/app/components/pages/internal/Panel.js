@@ -1,4 +1,4 @@
-import {Card, CardHeader} from 'material-ui/Card';
+import {Card, CardHeader} from 'sitecore-ui/Card';
 
 const Panel = (props) => {
   const styles = Object.assign({}, {

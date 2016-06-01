@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CheckBox from 'material-ui/Checkbox';
-import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
-import ExpandMore from 'material-ui/svg-icons/navigation/expand-more';
+import CheckBox from 'sitecore-ui/Checkbox';
+import ChevronRight from 'sitecore-ui/svg-icons/navigation/chevron-right';
+import ExpandMore from 'sitecore-ui/svg-icons/navigation/expand-more';
 
 const TreeViewListItem = (props) => {
     const {

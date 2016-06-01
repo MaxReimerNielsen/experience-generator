@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import Slider from 'material-ui/Slider';
-import Divider from 'material-ui/Divider';
+import TextField from 'sitecore-ui/TextField';
+import RaisedButton from 'sitecore-ui/RaisedButton';
+import Slider from 'sitecore-ui/Slider';
+import Divider from 'sitecore-ui/Divider';
 import { connect } from 'react-redux';
 import { addRefUrl, delRefUrl, updateRefUrl } from '../../../actions/RefUrlsAction';
 import { bindActionCreators } from 'redux';
 import debounce from 'lodash.debounce';
 
 
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardText} from 'sitecore-ui/Card';
 
 class AddRefUrlComponent extends Component {
   constructor(props) {

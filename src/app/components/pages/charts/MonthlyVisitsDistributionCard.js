@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import NVD3Chart from 'react-nvd3'
-import {Card, CardHeader} from 'material-ui/Card';
+import {Card, CardHeader} from 'sitecore-ui/Card';
 
 
 export default class MonthlyDistributionCard extends Component {

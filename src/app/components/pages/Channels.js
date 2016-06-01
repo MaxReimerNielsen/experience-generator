@@ -2,7 +2,7 @@ import { Component } from 'react';
 import Panel from './internal/Panel.js';
 import PanelRow from './internal/PanelRow.js';
 import PanelCell from './internal/PanelCell.js';
-import {Slider, Divider} from 'material-ui';
+import {Slider, Divider} from 'sitecore-ui';
 import { connect } from 'react-redux';
 import { updateSlider, updateCategorySlider, dragStart, dragStop } from '../../../actions/Actions';
 import { bindActionCreators } from 'redux';

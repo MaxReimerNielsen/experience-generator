@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slider from 'material-ui/Slider';
+import Slider from 'sitecore-ui/Slider';
 import PanelRow from './PanelRow.js';
 import PanelCell from './PanelCell.js';
 

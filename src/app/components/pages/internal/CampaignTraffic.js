@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardText} from 'sitecore-ui/Card';
 import Panel from './Panel.js';
 import CampaignItem from './CampaignItem';
 

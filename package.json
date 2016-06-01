@@ -7,7 +7,7 @@
     "url": "https://github.com/MaxReimerNielsen/experience-generator"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "private": true,
   "scripts": {
@@ -21,6 +21,9 @@
   },
   "dependencies": {
     "lodash.debounce": "^4.0.6",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-tap-event-plugin": "^1.0.0",
     "react-css-modules": "^3.7.6",
     "react-nvd3": "^0.5.7",
     "react-redux": "^4.4.5",
@@ -50,8 +53,8 @@
     "intl-locales-supported": "^1.0.0",
     "json-loader": "^0.5.4",
     "marked": "^0.3.5",
-    "nodemon": "^1.9.2",
     "node-sass": "^3.7.0",
+    "nodemon": "^1.9.2",
     "raw-loader": "^0.5.1",
     "react-addons-perf": "^15.0.1",
     "react-docgen": "^2.4.0",
@@ -64,6 +67,7 @@
     "redux-devtools": "^3.3.1",
     "resolve-url-loader": "^1.4.3",
     "sass-loader": "^3.2.0",
+    "sitecore-ui": "0",
     "style-loader": "^0.13.1",
     "transfer-webpack-plugin": "^0.1.4",
     "url-loader": "^0.5.7",

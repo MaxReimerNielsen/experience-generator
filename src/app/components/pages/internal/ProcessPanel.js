@@ -1,4 +1,4 @@
-import {RaisedButton, LinearProgress, Card} from 'material-ui';
+import {RaisedButton, LinearProgress, Card} from 'sitecore-ui';
 
 const ProcessPanel = (props) => {
   return (

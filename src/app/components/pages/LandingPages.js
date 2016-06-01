@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton'
-import Dialog from 'material-ui/Dialog';
-import Divider from 'material-ui/Divider';
-import Slider from 'material-ui/Slider';
+import RaisedButton from 'sitecore-ui/RaisedButton'
+import Dialog from 'sitecore-ui/Dialog';
+import Divider from 'sitecore-ui/Divider';
+import Slider from 'sitecore-ui/Slider';
 import Panel from './internal/Panel';
 import PanelRow from './internal/PanelRow';
 import PanelCell from './internal/PanelCell';
