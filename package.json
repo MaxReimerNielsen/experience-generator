@@ -1,6 +1,6 @@
 {
   "name": "experience-generator",
-  "version": "0.1",
+  "version": "0.1.0-beta1",
   "description": "React application prototype of Experience Generator",
   "repository": {
     "type": "git",
