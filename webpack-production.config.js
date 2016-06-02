@@ -42,8 +42,6 @@ const config = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"',
-      },
-      'RESOURCE_PATH_PREFIX': {
         RESOURCE_PATH_PREFIX: '"/api/exg/"',
       },
     }),
