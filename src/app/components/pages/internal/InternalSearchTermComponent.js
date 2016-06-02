@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import TextField from 'sitecore-ui/TextField';
 import RaisedButton from 'sitecore-ui/RaisedButton';
 import Slider from 'sitecore-ui/Slider';
-
 import {Card, CardActions, CardHeader, CardText} from 'sitecore-ui/Card';
+import { addInternalSearchTerm, delInternalSearchTerm, updateInternalSearchTerm } from '../../../../actions/Search_actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import debounce from 'lodash.debounce';
 
 class AddInternalSearchTermComponent extends Component {
     constructor(props){
@@ -35,10 +38,10 @@ class AddInternalSearchTermComponent extends Component {
                         padding:'15px'
                     }} className="row">
                         <div className="col s8">
-                            <TextField name="InternalSearchTerm" fullWidth={true} onChange={this.onInputValueChangeHandler.bind(this)} value={this.state.inputValue}></TextField>
+                            <TextField name="InternalSearcTerm" fullWidth={true} onChange={this.onInputValueChangeHandler.bind(this)} value={this.state.inputValue}></TextField>
                         </div>
                         <div className="col s4">
-                            <RaisedButton style={{marginTop:'15px'}} onClick={this.addHandler.bind(this)} label="Add Search Term"></RaisedButton>
+                            <RaisedButton style={{marginTop:'15px'}} onClick={this.addHandler.bind(this)} label="Add Internal Term"></RaisedButton>
                         </div>
                     </div>
                 </Card>);
@@ -48,18 +51,13 @@ class AddInternalSearchTermComponent extends Component {
 class InternalSearchTermItemListComponent extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            sliderValue: 0.5
-        }
     }
     onDeleteHandler(value) {
-        const {onDelete} = this.props;
-        
-        onDelete(value);
+        this.props.onDelete(this.props.internalSearchTerm.term);
     }
     
     handleSlider(e, value) {
-        this.setState({sliderValue: value});
+         this.props.onUpdateInternalSearchTerm(this.props.internalSearchTerm.term, value);
     }
     render() {
         const {internalSearchTerm} = this.props;
@@ -84,7 +82,7 @@ class InternalSearchTermItemListComponent extends Component {
 
 class InternalSearchTermListComponent extends Component {
     render() {
-        const { internalSearchTerms, onDelete } = this.props;
+        const { internalSearchTerms, onDelete, onUpdateInternalSearchTerm } = this.props;
         const cardContentStyle = {
           minHeight: '30px',
           padding: '15px'
@@ -94,19 +92,24 @@ class InternalSearchTermListComponent extends Component {
                     <CardHeader title="Ref URL" actAsExpander={false} showExpandableButton={false}/>
                     <div style={cardContentStyle}>
                         {internalSearchTerms.map((internalSearchTerm, index)=>{
-                            return (<InternalSearchTermItemListComponent key={index} onDelete={onDelete} internalSearchTerm={internalSearchTerm}></InternalSearchTermItemListComponent>)
+                            return (<InternalSearchTermItemListComponent 
+                            key={index} 
+                            onDelete={onDelete} 
+                            internalSearchTerm={internalSearchTerm}
+                            onUpdateInternalSearchTerm= {onUpdateInternalSearchTerm}
+                            ></InternalSearchTermItemListComponent>)
                         })}  
                     </div>          
                 </Card>);
     }
 }
 
-export default class InternalSearchTermComponent extends Component {
+class InternalSearchTermComponent extends Component {
     
     constructor(props) {
         super(props);
         this.state = {
-            internalSearchTerms: [] //move this in a redux store
+            internalSearchTerms: [] 
         };
     }
     
@@ -119,10 +122,12 @@ export default class InternalSearchTermComponent extends Component {
         this.setState({
             internalSearchTerms: filteredInternalSearchTerms
         });
+        this.props.delInternalSearchTerm(value);
     }
     
     onAddHandler(value) {
         this.setState({internalSearchTerms: this.state.internalSearchTerms.concat([{ term: value, value: 0.5 }])}); //concat to re-render the Component.
+        this.props.addInternalSearchTerm(value);
     }
     
     render() {
@@ -133,8 +138,20 @@ export default class InternalSearchTermComponent extends Component {
                 <AddInternalSearchTermComponent onAdd={this.onAddHandler.bind(this)}></AddInternalSearchTermComponent>
             </div>
             <div style={spacingStyle}>
-                <InternalSearchTermListComponent onDelete={this.onDeleteHandler.bind(this)} internalSearchTerms={this.state.internalSearchTerms}></InternalSearchTermListComponent>
+                 <InternalSearchTermListComponent onUpdateInternalSearchTerm={debounce(this.props.updateInternalSearchTerm, 200) } onDelete={this.onDeleteHandler.bind(this) } internalSearchTerms={this.props.search.internalSearchTerms}></InternalSearchTermListComponent>
             </div>
         </div>)
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        search: state.search
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ addInternalSearchTerm, delInternalSearchTerm, updateInternalSearchTerm }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InternalSearchTermComponent); 
+
