@@ -5,6 +5,7 @@ import landingPages from './LandingPages_reducer';
 import outcomes from './Outcomes_reducer';
 import dashboard from './Dashboard_reducer';
 import search from './Search_reducer';
+import process from './Process_reducer';
 import { combineReducers } from 'redux';
 
 export default combineReducers({ 
@@ -12,7 +13,8 @@ export default combineReducers({
     refUrls,
     channels,
     dashboard,
-    landingPages, 
+    landingPages,
     outcomes,
+    process, 
     search 
 }); 
