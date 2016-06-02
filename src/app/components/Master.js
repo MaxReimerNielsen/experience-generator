@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Title from 'react-title-component';
 import spacing from 'sitecore-ui/styles/spacing';
 import getMuiTheme from 'sitecore-ui/styles/getMuiTheme';
-import {Tabs, Tab} from 'sitecore-ui';
+import {Tabs, Tab} from 'sitecore-ui/Tabs';
 import { ScGlobalHeader, ScMainContainer, ScGlobalLogo, ScAccountInformation, ScApplicationHeader } from '../sitecore/layouts';
 import { combineReducers } from 'redux';  
 import ProcessPanel from './pages/internal/ProcessPanel';

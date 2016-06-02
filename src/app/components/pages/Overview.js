@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Panel from './internal/Panel.js';
 import PanelRow from './internal/PanelRow.js';
 import PanelCell from './internal/PanelCell.js';
-import {Slider, Divider, TextField, DatePicker} from 'sitecore-ui';
+import Slider from 'sitecore-ui/Slider';
+import Divider from 'sitecore-ui/Divider';
+import TextField from 'sitecore-ui/TextField';
+import DatePicker from 'sitecore-ui/DatePicker';
 
 class Page extends Component {
     render() {

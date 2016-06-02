@@ -1,7 +1,8 @@
 import { LANDINGPAGES_GET, LANDINGPAGES_UPDATE, LANDINGPAGES_UPDATE_SLIDER } from '../constants/ActionTypes';
+import { RESOURCE_PATH_LANDINGPAGES } from '../constants/ResourcePaths';
 
 export function getData() {
-    const request = fetch('/api/landingpages').then(x => x.json());
+    const request = fetch(RESOURCE_PATH_LANDINGPAGES).then(x => x.json());
     
     return {
         type: LANDINGPAGES_GET,

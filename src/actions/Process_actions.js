@@ -1,7 +1,8 @@
 import { PROCESS_START, PROCESS_UPDATE } from '../constants/ActionTypes';
+import { RESOURCE_PATH_PROCESS } from '../constants/ResourcePaths';
 
 export const start = () => {
-  const request = fetch('/api/xgen/jobs', {method: 'post'}).then(x => x.json());
+  const request = fetch(RESOURCE_PATH_PROCESS, {method: 'post'}).then(x => x.json());
   
   return {
     type: PROCESS_START,
@@ -10,7 +11,7 @@ export const start = () => {
 }
 
 export const update = (id) => {
-  const request = fetch(`/api/xgen/jobs/${id}`).then(x => x.json());
+  const request = fetch(`${RESOURCE_PATH_PROCESS}/${id}`).then(x => x.json());
   
   return {
     type: PROCESS_UPDATE,

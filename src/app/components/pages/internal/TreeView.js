@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TreeViewList from './TreeViewList';
 import TreeViewListItem from './TreeViewListItem';
-import { Checkbox } from 'sitecore-ui';
+import Checkbox from 'sitecore-ui/Checkbox';
 
 class TreeView extends Component {
     static propTypes = {

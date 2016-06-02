@@ -1,4 +1,6 @@
-import {RaisedButton, LinearProgress, Card} from 'sitecore-ui';
+import RaisedButton from 'sitecore-ui/RaisedButton';
+import LinearProgress from 'sitecore-ui/LinearProgress';
+import Card from 'sitecore-ui/Card';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {start, update} from '../../../../actions/Process_actions';

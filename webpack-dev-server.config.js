@@ -21,6 +21,11 @@ const config = {
     filename: 'app.js', // Name of output file
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        RESOURCE_PATH_PREFIX: '"/api/"',
+      },
+    }),
     // Used to include index.html in build folder
     new HtmlWebpackPlugin({
       inject: false,

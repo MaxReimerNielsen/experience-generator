@@ -4,7 +4,6 @@
     "nodemon.json",
     "server.js",
     "webpack-dev-server.config.js",
-    "webpack-production.config.js",
     "webpack-server.js"
   ]
 }

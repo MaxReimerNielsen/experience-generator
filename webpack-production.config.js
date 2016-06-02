@@ -41,7 +41,8 @@ const config = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
+        NODE_ENV: '"production"',
+        RESOURCE_PATH_PREFIX: '"/api/exg/"',
       },
     }),
     new HtmlWebpackPlugin({
@@ -63,26 +64,39 @@ const config = {
     // Allow loading of non-es5 js files.
     loaders: [
       {
+        test: /\.png$/, loader: 'url-loader',
+      },
+      {
+        test: /\.gif$/, loader: 'url-loader',
+      },
+      {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loaders: [
+          'react-hot',
+          'babel-loader',
+        ],
         exclude: /node_modules/,
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader',
-      },
-      {
-        test: /\.txt$/,
-        loader: 'raw-loader',
-        include: path.resolve(__dirname, 'src/app/components/raw-code'),
-      },
-      {
-        test: /\.md$/,
-        loader: 'raw-loader',
+        test: /\.jsx$/,
+        loaders: [
+          'react-hot', 
+          'babel?presets[]=es2015,presets[]=react,presets[]=stage-1,plugins[]=transform-decorators-legacy,plugins[]=transform-object-rest-spread'
+        ],
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader',
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'resolve-url',
+          'sass',
+        ],
       },
     ],
   },

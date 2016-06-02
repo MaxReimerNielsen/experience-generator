@@ -1,7 +1,8 @@
 import { CAMPAIGNS_GET, CAMPAIGNS_TRAFFIC_UPDATE, CAMPAIGNS_UPDATE } from '../constants/ActionTypes';
+import { RESOURCE_PATH_CAMPAIGNS } from '../constants/ResourcePaths';
 
 export function getData() {
-    const request = fetch('/api/campaigns').then(x => x.json());
+    const request = fetch(RESOURCE_PATH_CAMPAIGNS).then(x => x.json());
     
     return {
         type: CAMPAIGNS_GET,
