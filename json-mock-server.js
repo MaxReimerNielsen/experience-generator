@@ -18,6 +18,77 @@ module.exports = ( PORT ) => {
       ]
     }));
   });
+  
+  apiServer.get('/api/overview', function (req, res) {
+    var output = {
+      uniqueVisitorsNumber: {
+        name: "Number of unique visitors",
+        value: 170
+      },
+      generatedVisitsNumber: {
+        name: "Number of visits generated (approx.)",
+        value: 100500
+      },
+      bounceRate: {
+        name: "Bounce rate",
+        value: 0.5
+      },
+      percentageIdentifiedVisitors: {
+        name: "Percentage identified visitors",
+        value: 0.2
+      },
+      peageviewsPerVisit: {
+        name: "Pageviews per visit (avg)",
+        value: 4
+      },
+      timeSpentPerVisit: {
+        name: "Time spent per page (avg)",
+        value: "00:30"
+      },
+      startDate: {
+        name: "Start date",
+        value: "02/06/2015"
+      },
+      endDate: {
+        name: "End date",
+        value: "16/06/2015"
+      },
+      dailyDistribution: [
+        { name: "Monday", value: 0.1 },
+        { name: "Tuesday", value: 0.1 },
+        { name: "Wednesday", value: 0.1 },
+        { name: "Thursday", value: 0.1 },
+        { name: "Friday", value: 0.1 },
+        { name: "Saturday", value: 0.1 },
+        { name: "Sunday", value: 0.1 }
+      ],
+       monthlyDistribution: [
+        { name: "January", value: 0.1 },
+        { name: "February", value: 0.1 },
+        { name: "March", value: 0.1 },
+        { name: "April", value: 0.1 },
+        { name: "May", value: 0.1 },
+        { name: "June", value: 0.1 },
+        { name: "July", value: 0.1 },
+        { name: "August", value: 0.1 },
+        { name: "September", value: 0.1 },
+        { name: "October", value: 0.1 },
+        { name: "November", value: 0.1 },
+        { name: "December", value: 0.1 }
+      ],
+       trafficDistribution: [
+        { name: "micro", value: 0.4 },
+        { name: "website", value: 1 }
+      ],
+       location: [
+        { name: "Europe, Middle East, Africa", value: 0.3 },
+        { name: "Asia Pacific", value: 0.1 },
+        { name: "Americas", value: 0.6 }
+      ]
+    };
+    
+    res.send( JSON.stringify( output ));
+  });
 
   apiServer.get('/api/outcomes/', function (req, res) {
     res.send(JSON.stringify([

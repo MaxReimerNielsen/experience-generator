@@ -6,9 +6,11 @@ import outcomes from './Outcomes_reducer';
 import dashboard from './Dashboard_reducer';
 import search from './Search_reducer';
 import process from './Process_reducer';
+import overview from './Overview_reducer';
 import { combineReducers } from 'redux';
 
 export default combineReducers({ 
+    overview,
     campaigns,
     refUrls,
     channels,

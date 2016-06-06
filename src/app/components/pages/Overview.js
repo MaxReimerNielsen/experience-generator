@@ -6,9 +6,26 @@ import Slider from 'sitecore-ui/Slider';
 import Divider from 'sitecore-ui/Divider';
 import TextField from 'sitecore-ui/TextField';
 import DatePicker from 'sitecore-ui/DatePicker';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getData} from '../../../actions/Overview_actions'; 
 
-class Page extends Component {
+class OverviewPage extends Component {
+     constructor(props) {
+        super(props);
+        
+        if(!props.overview.dataLoaded) {
+            props.getData();
+        }
+    }
+    
     render() {
+          const {
+            overview: {
+                uniqueVisitorsNumber
+            }
+        } = this.props;
+        
         return (
             <div>
                 <Panel header="Overview">
@@ -17,7 +34,7 @@ class Page extends Component {
 
                             <TextField
                                 floatingLabelText="Number of unique visitors"
-                                value="100"
+                                value={uniqueVisitorsNumber.value}
                                 />
                             <TextField
                                 floatingLabelText="Number of visits generated (approx.)"
@@ -103,9 +120,9 @@ class Page extends Component {
                     <PanelRow>
                         <PanelCell colClass="s4">
                             <div>Start Date</div>
-                            <DatePicker container="inline" />
+                            <DatePicker container="inline" name="StartDate" />
                             <div>End Date</div>
-                            <DatePicker container="inline" />
+                            <DatePicker container="inline" name="EndDate"/>
                             <PanelRow style={{ padding: '15px 0' }}>
                                 <PanelCell colClass="s12">
                                     Annual increase in traffic
@@ -282,5 +299,11 @@ class Page extends Component {
         );
     }
 }
-
-export default Page;
+const mapStateToProps = (state) => {
+    
+    return {overview:state.overview};
+}
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getData }, dispatch);
+}
+export default connect(mapStateToProps,mapDispatchToProps)(OverviewPage);
