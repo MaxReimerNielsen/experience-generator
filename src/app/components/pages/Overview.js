@@ -8,24 +8,61 @@ import TextField from 'sitecore-ui/TextField';
 import DatePicker from 'sitecore-ui/DatePicker';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getData} from '../../../actions/Overview_actions'; 
+import { getData} from '../../../actions/Overview_actions';
+import  OverviewSlider from './internal/OverviewSlider.js';
 
 class OverviewPage extends Component {
-     constructor(props) {
+    constructor(props) {
         super(props);
-        
-        if(!props.overview.dataLoaded) {
+
+        if (!props.overview.dataLoaded) {
             props.getData();
         }
     }
-    
+
     render() {
-          const {
+        const {
             overview: {
-                uniqueVisitorsNumber
+                uniqueVisitorsNumber,
+                generatedVisitsNumber,
+                bounceRate,
+                percentageIdentifiedVisitors,
+                peageviewsPerVisit,
+                timeSpentPerVisit,
+                startDate,
+                endDate,
+                dailyDistribution,
+                monthlyDistribution,
+                trafficDistribution,
+                location
             }
         } = this.props;
         
+      
+        const trafficDistr = trafficDistribution.map((item, index)=>{
+            return(
+                <OverviewSlider value={item.value} name={item.name} key={index}/>
+            );
+        });
+      
+        const locationSliders = location.map((item, index)=>{
+            return(
+                <OverviewSlider value={item.value} name={item.name} key={index}/>
+            );
+        });
+
+        const dailyDistr = dailyDistribution.map((item, index)=>{
+            return(
+                <OverviewSlider value={item.value} name={item.name} key={index}/>
+            );
+        });
+
+        const monthDistr = monthlyDistribution.map((item, index)=>{
+            return(
+                <OverviewSlider value={item.value} name={item.name} key={index}/>
+            );
+        });
+
         return (
             <div>
                 <Panel header="Overview">
@@ -33,36 +70,40 @@ class OverviewPage extends Component {
                         <PanelCell colClass="s4">
 
                             <TextField
-                                floatingLabelText="Number of unique visitors"
+                                name="uniqueVisitorsNumber"
+                                floatingLabelText={uniqueVisitorsNumber.name}
                                 value={uniqueVisitorsNumber.value}
                                 />
                             <TextField
-                                floatingLabelText="Number of visits generated (approx.)"
-                                value="500"
+                                name="generatedVisitsNumber"
+                                floatingLabelText={generatedVisitsNumber.name}
+                                value={generatedVisitsNumber.value}
                                 />
                             <PanelRow style={{ padding: '15px 0' }}>
                                 <PanelCell colClass="s12">
-                                    Bounce rate
+                                    {bounceRate.name}
                                 </PanelCell>
                                 <PanelCell colClass="s12">
-                                    <Slider value={0}> </Slider>
+                                    <Slider value={bounceRate.value}> </Slider>
                                 </PanelCell>
                             </PanelRow>
                             <PanelRow style={{ padding: '15px 0' }}>
                                 <PanelCell colClass="s12">
-                                    Percentage identified visitors
+                                    {percentageIdentifiedVisitors.name}
                                 </PanelCell>
                                 <PanelCell colClass="s12">
-                                    <Slider value={0}> </Slider>
+                                    <Slider value={percentageIdentifiedVisitors.value}> </Slider>
                                 </PanelCell>
                             </PanelRow>
                             <TextField
-                                floatingLabelText="Pageviews per visit (avg)"
-                                value="4"
+                                name="peageviewsPerVisit"
+                                floatingLabelText={peageviewsPerVisit.name}
+                                value={peageviewsPerVisit.value}
                                 />
                             <TextField
-                                floatingLabelText="Time spent per page (avg)"
-                                value="00:30"
+                                name="timeSpentPerVisit"
+                                floatingLabelText={timeSpentPerVisit.name}
+                                value={timeSpentPerVisit.value}
                                 />
 
                         </PanelCell>
@@ -70,50 +111,12 @@ class OverviewPage extends Component {
 
                         <PanelCell colClass="s4">
                             <div>Traffic distribution</div>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    micro
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    website
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
+                            {trafficDistr}
                         </PanelCell>
-                        
+
                         <PanelCell colClass="s4">
                             <div>Location</div>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Europe, Middle East, Africa
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Asia Pacific
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Americas
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
+                            {locationSliders}
                         </PanelCell>
                     </PanelRow>
 
@@ -133,165 +136,15 @@ class OverviewPage extends Component {
                             </PanelRow>
                         </PanelCell>
                         <PanelCell colClass="s4">
-                         <div>Daily distribution</div>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Monday
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Tuesday
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Wednesday
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Thursday
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Friday
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Saturday
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    Sunday
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
+                            <div>Daily distribution</div>
+                            {dailyDistr}
                         </PanelCell>
-                        
+
                         <PanelCell colClass="s4">
-                        <div>Daily distribution</div>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    January
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    February
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    March
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    April
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    May
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    June
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    July
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    August
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    September
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    October
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    November
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
-                            <PanelRow style={{ padding: '15px 0' }}>
-                                <PanelCell colClass="s3">
-                                    December
-                                </PanelCell>
-                                <PanelCell colClass="s9">
-                                    <Slider value={0}> </Slider>
-                                </PanelCell>
-                            </PanelRow>
+                            <div>Monthly distribution</div>
+                            {monthDistr}
                         </PanelCell>
-                        
+
                     </PanelRow>
 
                 </Panel>
@@ -300,10 +153,10 @@ class OverviewPage extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    
-    return {overview:state.overview};
+
+    return { overview: state.overview };
 }
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ getData }, dispatch);
 }
-export default connect(mapStateToProps,mapDispatchToProps)(OverviewPage);
+export default connect(mapStateToProps, mapDispatchToProps)(OverviewPage);
