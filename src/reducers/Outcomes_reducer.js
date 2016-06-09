@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 const outcomes = (state = [], action) => {
     switch (action.type) {
         case OUTCOMES_GET:
-            return [...action.payload];
+            return [...action.payload.Data];
             
         case OUTCOMES_UPDATE:
             const payload = action.payload.Data;
