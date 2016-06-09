@@ -36,9 +36,8 @@ export default class VisitsPerChannelCard extends Component {
                     <NVD3Chart
                         id={this.props.id + 'Chart'}
                         type="pieChart"
-                        datum={this.props.data}
-                        width={500}
-                        height={500}
+                        datum={this.props.data}   
+                        height={500}                     
                         x={this.props.x}
                         y={this.props.y}
                         tooltip={{ enabled: true }}

@@ -39,11 +39,10 @@ export default class MonthlyDistributionCard extends Component {
                     <NVD3Chart
                         id={this.props.id + 'Chart'}
                         type="discreteBarChart"
-                        datum={this.props.data}
+                        datum={this.props.data}   
+                        height={500}                     
                         x={this.props.x}
                         y={this.props.y}
-                        width={800}
-                        height={500}
                         legend={{ enabled: true }}
                         tooltip={{ enabled: true }}
                         />
