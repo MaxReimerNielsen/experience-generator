@@ -21,7 +21,7 @@ class Page extends Component {
         <div style={spacingStyle}>
           <VisitsPerChannelCard 
             id='VisitsPerChannelCard'
-            data={this.props.dashboard.data.visitsPerChannel}
+            data={this.props.dashboard.chartsData.visitsPerChannel}
             x='label'
             y='value'>
           </VisitsPerChannelCard>
@@ -29,7 +29,7 @@ class Page extends Component {
         <div style={spacingStyle}>
           <MonthlyVisitsDistributionCard 
             id='MonthlyDistributionCard'
-            data={this.props.dashboard.data.monthlyDistribution}
+            data={this.props.dashboard.chartsData.monthlyDistribution}
             x='label'
             y='value'>
           </MonthlyVisitsDistributionCard>

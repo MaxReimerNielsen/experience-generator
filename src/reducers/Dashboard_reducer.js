@@ -7,13 +7,13 @@ const dashboardInitState =
         monthlyDistribution:[]
     }
 
-const data = (state = dashboardInitState, action) => {
+const chartsData = (state = dashboardInitState, action) => {
     switch (action.type) {
         case DASHBOARD_GET:
-            return action.payload.data;                    
+            return action.payload.Data.chartsData;                    
     }
     
     return state;
 }
 
-export default combineReducers( {data} );
+export default combineReducers( {chartsData} );

@@ -43,7 +43,7 @@ const config = {
       'process.env': {
         NODE_ENV: '"production"',
         //RESOURCE_PATH_PREFIX: '"/api/exg"',
-        RESOURCE_PATH_PREFIX: '"/api/ssc/ExgData/exg"',        
+        RESOURCE_PATH_PREFIX: '"/sitecore/api/ssc/ExgData/exg"',        
       },
     }),
     new HtmlWebpackPlugin({
