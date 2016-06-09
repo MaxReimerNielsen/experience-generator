@@ -66,7 +66,6 @@ const channelsInitState = [
 const channelCategorySlider = (state = channelsInitState, action) => {
   switch (action.type) {
     case types.UPDATE_CATEGORY_SLIDER:
-    console.log(action.index, action.value)
     let channels = [...state];
     channels[action.index].value =  action.value;
       return channels;

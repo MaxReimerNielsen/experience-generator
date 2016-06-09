@@ -9,13 +9,13 @@ const defaultState = {
 const landingPages = (state = defaultState, action) => {
     switch (action.type) {
         case LANDINGPAGES_GET:
-            return Object.assign(state, { treeview: action.payload });
+            return Object.assign(state, { treeview: action.payload.Data });
             
         case LANDINGPAGES_UPDATE:
-            return Object.assign(state, { added: [...action.payload] });
+            return Object.assign(state, { added: [...action.payload.Data] });
         
         case LANDINGPAGES_UPDATE_SLIDER:
-            const payload = action.payload;
+            const payload = action.payload.Data;
             let landingPages = Object.assign(state, { added: [...state.added] });
             let landingPage = landingPages.added.find((item) => {
                 return item.id === payload.id; 

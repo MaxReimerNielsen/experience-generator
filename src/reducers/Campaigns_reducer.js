@@ -13,19 +13,19 @@ const defaultState = {
 const campaigns = (state = defaultState, action) => {
     switch (action.type) {
         case CAMPAIGNS_GET:
-            return Object.assign(action.payload, { dataLoaded: true });
+            return Object.assign(action.payload.Data, { dataLoaded: true });
             
         case CAMPAIGNS_TRAFFIC_UPDATE:
             let traffic = state.traffic;
             
-            traffic.value = action.payload.value;
+            traffic.value = action.payload.payload.Data.value;
             
             return Object.assign(state, { traffic });
             
         case CAMPAIGNS_UPDATE:
             let items = [...state.items];
             
-            items[action.payload.index].value = action.payload.value;            
+            items[action.payload.payload.Data.index].value = action.payloadpayload.Data.value;            
         
             return Object.assign(state, { items } );
     }

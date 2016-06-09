@@ -7,7 +7,7 @@ const outcomes = (state = [], action) => {
             return [...action.payload];
             
         case OUTCOMES_UPDATE:
-            const payload = action.payload;
+            const payload = action.payload.Data;
             let outcomes = [...state];
             let outcome = outcomes.find((item) => {
                 return item.id === payload.id; 
