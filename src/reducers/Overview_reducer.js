@@ -20,7 +20,7 @@ const initialState = {
 const overview = (state = initialState, action) => {
     switch (action.type) {
         case OVERVIEW_GET:
-            return Object.assign(action.payload, { dataLoaded: true });
+            return Object.assign(action.payload.Data, { dataLoaded: true });
 
         // case CAMPAIGNS_TRAFFIC_UPDATE:
         //     let traffic = state.traffic;
