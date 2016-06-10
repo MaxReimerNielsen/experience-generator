@@ -18,14 +18,14 @@ const campaigns = (state = defaultState, action) => {
         case CAMPAIGNS_TRAFFIC_UPDATE:
             let traffic = state.traffic;
             
-            traffic.value = action.payload.payload.Data.value;
+            traffic.value = action.payload.value;
             
             return Object.assign(state, { traffic });
             
         case CAMPAIGNS_UPDATE:
             let items = [...state.items];
             
-            items[action.payload.payload.Data.index].value = action.payloadpayload.Data.value;            
+            items[action.payload.index].value = action.payload.value;            
         
             return Object.assign(state, { items } );
     }
