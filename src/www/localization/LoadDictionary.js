@@ -1,11 +1,12 @@
 const url = window.location.href;
 const languageSelector = 'sc_lang';
 const dictionaryPath= '/localization/dictionaries/';
-var language = getParameterByName(languageSelector, url) ;
+var language = getParameterByName(languageSelector, url) || "en";
 
 if (!window.EXG) {
     window.EXG = {};
 }
+
 
 var fileUrl = dictionaryPath + language + '.json';
 var jqxhr = $.getJSON(fileUrl, function (result) {
