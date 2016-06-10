@@ -7,6 +7,8 @@ const RESOURCE_PATH_DASHBOARD = `${CONFIG_PATH}/-/Dashboard`;
 const RESOURCE_PATH_LANDINGPAGES = `${CONFIG_PATH}/-/Landingpages`;
 const RESOURCE_PATH_OUTCOMES = `${CONFIG_PATH}/-/Outcomes`;
 const RESOURCE_PATH_OVERVIEW = `${CONFIG_PATH}/-/Overview`;
+const RESOURCE_PATH_START_JOBS = `${CONFIG_PATH}/-/Jobs`;
+const RESOURCE_PATH_UPDATE_JOBS = `${CONFIG_PATH}/:id/Jobs`;
 
 function getRandomNumber(range = 200) {        
   return (Math.random() * range ) + 1;
@@ -189,18 +191,20 @@ module.exports = ( PORT ) => {
 
   var id = 0;
 
-  apiServer.post('/api/xgen/jobs', function (req, res) {
+  apiServer.post(RESOURCE_PATH_START_JOBS, function (req, res) {
     // Ignore incoming data as this is a mock server 
     // ---
     res.send(JSON.stringify({
+      Data : {
       "Id": id++
+      }
     }));
   });
 
   const progressMap = {};
 
-  apiServer.get('/api/xgen/jobs/:id', function (req, res) {
-    var id = req.params.id;
+  apiServer.get(RESOURCE_PATH_UPDATE_JOBS, function (req, res) {
+    var id = req.params.id.replace('{', '').replace('}', '');
 
     if (!progressMap[id])
       progressMap[id] = { value: 0 };
@@ -213,17 +217,19 @@ module.exports = ( PORT ) => {
 
     if (isInProgress) {
       res.send(JSON.stringify({
+        Data : {
         "Id": id,
         "CompletedVisitors": 100,
         "Progress": progressMap[id].value,
         "CompletedVisits": 501,
         "JobStatus": "Running",
         "Segments": []
-      }));
+      }}));
     } else {
       res.send(JSON.stringify({
+        Data : {
           "Id": id,
-          "StatusUrl": "/api/xgen/jobs/9c2b8061-df40-4deb-ac2d-1c84ddfe08f5?action=get",
+          "StatusUrl": RESOURCE_PATH_UPDATE_JOBS + "/9c2b8061-df40-4deb-ac2d-1c84ddfe08f5?action=get",
           "LastException": null,
           "Started": "2016-06-01T01:19:56.3389798-07:00",
           "Ended": "2016-06-01T01:20:36.7442466-07:00",
@@ -491,6 +497,7 @@ module.exports = ( PORT ) => {
             }
           ]
         }
+      }
       ));
     }
   });

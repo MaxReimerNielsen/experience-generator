@@ -12,12 +12,12 @@ const progress = (state = initialState, action) => {
   switch (action.type) {
     case PROCESS_START:
       return Object.assign({}, initialState, {
-        progressId: action.payload.Id,
+        progressId: action.payload.Data.Id,
         jobStatus: "Running",
       });
 
     case PROCESS_UPDATE:
-      if (action.payload.Id.toString() !== state.progressId.toString()) {
+      if (action.payload.Data.Id.toString() !== state.progressId.toString()) {
         // Do not update any state from an old update.
         // Update can be old if new process has started
         // and there was a request send before start was recieved.
@@ -25,11 +25,11 @@ const progress = (state = initialState, action) => {
       }
     
       return Object.assign({}, state, {
-        contacts: action.payload.CompletedVisitors,
-        progress: action.payload.Progress,
-        visits: action.payload.CompletedVisits,
-        jobStatus: action.payload.JobStatus,
-        segments: action.payload.Segments
+        contacts: action.payload.Data.CompletedVisitors,
+        progress: action.payload.Data.Progress,
+        visits: action.payload.Data.CompletedVisits,
+        jobStatus: action.payload.Data.JobStatus,
+        segments: action.payload.Data.Segments
       });
   }
 
