@@ -21,7 +21,7 @@ const ProcessPanel = (props) => {
   return (
     <div>
       <div style={{ padding: '0 15px' }}>
-        <h2 style={{ fontWeight: '600' }}>Process</h2>
+        <h2 style={{ fontWeight: '600' }}>{window.EXG.Dictionary.PROCESS}</h2>
       </div>
       <Card style={{ padding: '15px 25px', boxShadow: 'none' }}>
         <div className="row">
@@ -37,7 +37,7 @@ const ProcessPanel = (props) => {
         </div>
       </Card>
       <div style={{ padding: '15px 30px' }}>
-        <RaisedButton primary={true} label="Start" fullWidth={true} onMouseDown={props.start}></RaisedButton>
+        <RaisedButton primary={true} label={window.EXG.Dictionary.START} fullWidth={true} onMouseDown={props.start}></RaisedButton>
       </div>
 
     </div>

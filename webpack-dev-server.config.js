@@ -23,7 +23,8 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        RESOURCE_PATH_PREFIX: '"/api"',
+        RESOURCE_PATH_PREFIX: '"/api"',        
+        DICTIONARY_PATH_PREFIX: '""',
       },
     }),
     // Used to include index.html in build folder

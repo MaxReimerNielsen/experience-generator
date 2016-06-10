@@ -42,7 +42,8 @@ const config = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"',        
-        RESOURCE_PATH_PREFIX: '"/sitecore/api/ssc/ExgData/exg"',        
+        RESOURCE_PATH_PREFIX: '"/sitecore/api/ssc/ExgData/exg"',
+        DICTIONARY_PATH_PREFIX: '"/sitecore/shell/client/Applications/EXG"',        
       },
     }),
     new HtmlWebpackPlugin({
@@ -55,6 +56,7 @@ const config = {
     new TransferWebpackPlugin([
       {from: 'www/css', to: 'css'},
       {from: 'www/images', to: 'images'},
+      {from: 'www/localization', to: 'localization'},
     ], path.resolve(__dirname, 'src')),
   ],
   externals: {
